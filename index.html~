@@ -289,11 +289,10 @@ Urban Studies.
 
 <p>
 </div>
-<div style="float:left;padding:1px;width:33%;margin-top:70px;margin-left:auto;margin-right:auto;">
+<div style="float:left;padding:1px;width:33%;margin-top:80px;margin-left:auto;margin-right:auto;">
 </p>
 \begin{equation*}
 \begin{split}
-\quad &\\
 \mu_x & = \sum_i x_i \cdot p(x_i)\\
 & \\
 \sigma_x^2 &= \sum_i (x_i - \mu_x)^2 \cdot p(x_i)
