@@ -1,0 +1,601 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Describing Data</title>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="SONG Qiang" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/lecture.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="../MathJax-2.4/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "left",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Describing Data</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Population and Sample</a></li>
+<li><a href="#sec-2">Ch.4 Numerical Methods for Describing Data</a>
+<ul>
+<li><a href="#sec-2-1">4.1 The Center of a Data Set</a></li>
+<li><a href="#sec-2-2">4.2 Variability in a Data Set</a></li>
+<li><a href="#sec-2-3">4.3 Boxplots</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Ch.5 Summarizing Bivariate Data</a>
+<ul>
+<li><a href="#sec-3-1">Correlation</a></li>
+<li><a href="#sec-3-2">Example: Sugar Consumption and Behavior</a></li>
+<li><a href="#sec-3-3">Linear Regression</a></li>
+<li><a href="#sec-3-4">Predicted Value and Residuals</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Experimental Design</a>
+<ul>
+<li><a href="#sec-4-1">Randomization</a></li>
+<li><a href="#sec-4-2">Types of Bias</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Population and Sample</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>The entire collection of individuals or objects about which information is desired is called the <span class="underline"><i>population</i></span> of interest.
+</li>
+<li>A <span class="underline"><i>sample</i></span> is a subset of the population, selected for study in some prescribed manner.
+</li>
+<li>The number of members of a sample is called the <span class="underline"><i>sample size</i></span>, and the number of members of the population is called the <span class="underline"><i>population size</i></span>. The sample size is always a definite number, while a population might be infinite.<br  />
+</li>
+</ul>
+<p>
+<span class="underline">Example</span> You want to know what proportion of likely voters will vote for your candidate, so you poll 850 people. The people you actually ask are your sample, and the likely voters are the population.
+</p>
+<ul class="org-ul">
+<li><span class="underline"><i>Descriptive statistics</i></span> is organizing and summarizing data that were actually measured. <span class="underline"><i>Inferential statistics</i></span> is making statements about a population based on measurements of a smaller sample.
+</li>
+<li>Categorical data and Numerical data ( discrete/continuous )
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Ch.4 Numerical Methods for Describing Data</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">4.1 The Center of a Data Set</h3>
+<div class="outline-text-3" id="text-2-1">
+<p class="verse">
+The <span class="underline"><i>sample mean</i></span> of a sample of numerical observations \( x_1, x_2, \dots, x_n,\) denoted by \( \bar{x} \) is<br  />
+\[<br  />
+\bar{x}=\frac{\mbox{sum of all observations}}{\mbox{number of observationis}}=\frac{x_1+x_2+\cdots+x_n}{n}.<br  />
+\]<br  />
+</p>
+
+<p>
+<div class="org-info-box"><img src="../css/icons/info.png" alt="NOTE" /><p>
+The <span class="underline"><i>population mean</i></span>, denoted by \(\mu\), is the average of all \(x\) values in the entire population.
+</p><br style="clear:left;height:1px;" /></div><br />
+</p>
+
+<p>
+<div style="float:none;border:1px solid #aaaaaa;padding:8px;width:95%;margin-top:auto;margin-left:auto;margin-right:auto;">
+The <span class="underline"><i>sample median</i></span> is obtained by first ordering the \(n\) observations from smallest to largest with any repeated values included. Then
+</p>
+\begin{equation*}
+\text{sample median }=
+\begin{cases} 
+&\text{the single middle value if \(n\) is odd},\\
+& \\
+&\text{the average of the middle two values if \(n\) is even}. \end{cases}
+\end{equation*}
+<p>
+</div>
+</p>
+
+<p>
+<span class="underline">Example</span> Find the median of 3, 13, 7, 5, 21, 23, 39, 32, 40, 23, 14, 12, 56, 23, and 29.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">4.2 Variability in a Data Set</h3>
+<div class="outline-text-3" id="text-2-2">
+<p class="verse">
+The <span class="underline"><i>range</i></span> of a data set is defined as<br  />
+&nbsp; range = largest observation - smallest observation.<br  />
+</p>
+<p>
+The differences \( (x_1-\bar{x}), (x_2-\bar{x}), \dots, (x_n-\bar{x})\) are called <i>deviations</i> from the sample mean. The sum of squared deviations, denoted by \(S_{xx}\), is
+\[
+S_{xx}=\sum\limits_i(x_i-\bar{x})^2=(x_1-\bar{x})^2+(x_2-\bar{x})^2+ \cdots +(x_n-\bar{x})^2
+\]
+</p>
+<p class="verse">
+The <span class="underline"><i>sample variance</i></span>, denoted by \(s^2\), is the sum of squared deviations from the mean divided by \(n-1\). That is,<br  />
+\[<br  />
+s^2=\frac{\sum (x_i-\bar{x})^2}{n-1}=\frac{S_{xx}}{n-1}<br  />
+\]<br  />
+</p>
+<p>
+<div class="org-info-box"><img src="../css/icons/warning.png" alt="NOTE" /><p>
+Note that we use the divisor \( (n-1) \) in \( s^2 \) rather than \( n \).
+</p><br style="clear:left;height:1px;" /></div><br />
+</p>
+
+<p class="verse">
+The \(z\) score corresponding to a particular value is<br  />
+\[<br  />
+z\text{ score }=\frac{\text{value - mean}}{\text{standard deviation}}<br  />
+\]<br  />
+The \(z\) score measures how many standard deviations the value is from the mean.<br  />
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">4.3 Boxplots</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Quartiles and IQR
+</li>
+</ul>
+<p>
+<div style="float:none;border:1px solid #aaaaaa;padding:8px;width:90%;margin-top:auto;margin-left:auto;margin-right:auto;">
+<span class="underline"><i>The lower quartile (the first quartile)</i></span> is the member of the sample that is greater than or equal to a quarter of the data points;<br  />
+<span class="underline"><i>The upper quartile (the third quartile)</i></span> is the member of the sample that is greater than or equal to three quarters of the data points;<br  />
+The <span class="underline"><i>interquartile range (iqr)</i></span> is the upper quartile minus the lower quartile.
+</div>
+<div class="org-info-box"><img src="../css/icons/info.png" alt="NOTE" /><p>
+The iqr is a measure of variability that is not as sensitive to the presence of outliers as the standard deviation.
+</div><br style="clear:both;" />
+</p>
+<ul class="org-ul">
+<li>Five-number Summary<br  />
+  The five-number summary of a data set is the minimum value, the first quartile, median, the third quartile, and maximum value (in order).
+</li>
+<li>Boxplot (box and whisker plot) is graphical representation of the five-number summary.
+</li>
+</ul>
+
+<div class="figure">
+<p><img src="./files/Boxplot.png" alt="Boxplot.png" />
+</p>
+<p><span class="figure-number">Figure 1:</span> Box and Whisker Plot</p>
+</div>
+
+<ul class="org-ul">
+<li>Percentiles<br  />
+  For any particular number \(r\) between 0 and 100, the <span class="underline"><i>rth percentile</i></span> is the member of the sample that is greater than or equal to \(r%\) of the data points.
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Ch.5 Summarizing Bivariate Data</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">Correlation</h3>
+<div class="outline-text-3" id="text-3-1">
+<p class="verse">
+<span class="underline"><i>Pearson's sample correlation coefficient r</i></span> between two random variables \(x\) and \(y\) is given by<br  />
+\[<br  />
+r_{xy}=\frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{(n-1)s_x s_y}=\frac{\sum x_i y_i-n\bar{x}\bar{y}}{\sqrt{\sum x_i^2-n\bar{x}^2}\sqrt{\sum y_i^2-n\bar{y}^2}}<br  />
+\]<br  />
+The value of \(r\) is a measure of the extent to which \(x\) and \(y\) are <i>linearly related</i>.<br  />
+</p>
+
+<div class="figure">
+<p><img src="./files/PearsonCoefficient.png" alt="PearsonCoefficient.png" />
+</p>
+</div>
+
+<p>
+<div class="org-info-box"><img src="../css/icons/warning.png" alt="NOTE" /><p>
+If \(r=0\) there could still be a strong <i>non-linear</i> relationship between \(x\) and \(y\).
+</p><br style="clear:left;height:1px;" /></div><br />
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">Example: Sugar Consumption and Behavior</h3>
+<div class="outline-text-3" id="text-3-2">
+
+<div class="figure">
+<p><img src="./files/sugar.png" alt="sugar.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Virkkunen 1983 Study of violent offenders in prison
+<ul class="org-ul">
+<li>In impulsive violent offenders, blood sugar fell suddenly and rose quickly after a glucose challenge
+</li>
+<li>Antisocial offender had a fall in blood sugar that was slow to rise
+</li>
+</ul>
+</li>
+<li>Ron Prinz University of Florida 1980
+<ul class="org-ul">
+<li>First to study effects of sugar in children. Children ate 40% of calories as sugar
+</li>
+<li>The highest consumers of sugar (top 25%) demonstrated significantly poorer measures on attentiveness (hyperactive)
+</li>
+</ul>
+</li>
+<li>Jane Goldman at the University of Connecticut 1986
+<ul class="org-ul">
+<li>Giving sugar equal to one coke; decline in mental performance by 30 minutes and highly significant at 1 hour (2x as many mistakes)
+</li>
+<li>Harmful effect subsided at 1.5 hours
+</li>
+</ul>
+</li>
+<li>Judith Wurtman found a strong correlation between sugar intake, behavior and brain serotonin levels
+</li>
+<li>Dr Ralph Bolton studied the Quolla Indians in Andes of Peru, known to be very aggressive. Found that:
+<ul class="org-ul">
+<li>55% of male population were hypoglycemic
+</li>
+<li>Main diet was mostly potatoes (a very powerful hypoglycemic)
+</li>
+<li>Docile males had a normal blood sugar
+</li>
+</ul>
+</li>
+<li>Egger and Carter (1985) studied 76 hyperactive children who were placed on a low carbohydrate diet, which also eliminated food dyes
+<ul class="org-ul">
+<li>82% of the children improved on diet and 28% returned to normal
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">Linear Regression</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<div style="float:left;padding:1px;width:20%;margin-top:10px;margin-left:auto;margin-right:auto;">
+   Linear regression is an approach for modeling the linear relationship between two variables \(x\) and \(y
+\).
+</div>
+<div style="float:left;padding:1px;width:38%;margin-top:-40px;margin-left:auto;margin-right:auto;">
+</p>
+
+<div class="figure">
+<p><img src="./files/Regression1.png" alt="Regression1.png" width="80%" />
+</p>
+<p><span class="figure-number">Figure 4:</span> Linear Regression</p>
+</div>
+
+<p>
+</div>
+<div style="float:left;padding:1px;width:38%;margin-top:-40px;margin-left:auto;margin-right:auto;">
+</p>
+
+<div class="figure">
+<p><img src="./files/Regression2.png" alt="Regression2.png" width="80%" />
+</p>
+<p><span class="figure-number">Figure 5:</span> Nonlinear Regression</p>
+</div>
+
+<p>
+</div><br style="clear:both;" /> 
+</p>
+<ul class="org-ul">
+<li>The method of <i>least squares</i> is employed when fitting a line to bivariate data.
+<ul class="org-ul">
+<li>We want the target line to be as <i>close</i> as possible to bivariate data\( (x_1,y_1),\dots,(x_n,y_n) \), and we consider the sum of the squared deviations about a line \(y=a+bx\) to measure the goodness of fit of the line to the data points.
+\[
+    \sum_{i=1}^n\left[y_i-(a+bx_i)\right]^2=\left[y_1-(a+bx_1)\right]^2+\left[y_2-(a+bx_2)\right]^2+\cdots+\left[y_n-(a+bx_n)\right]^2
+    \]
+</li>
+<li>The <i>least-squares line</i> is the line that minimizes the sum of squared deviations above.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="figure">
+<p><img src="./files/LinearRegression.png" alt="LinearRegression.png" width="80%" />
+</p>
+</div>
+
+<p class="verse">
+The slope of the <span class="underline"><i>least-squares line</i></span> is<br  />
+\[<br  />
+b=\frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2}=\frac{\sum x_i y_i-n\bar{x}\bar{y}}{\sum x_i^2-n\bar{x}^2}<br  />
+\]<br  />
+and the \(y\) intercept is<br  />
+\[<br  />
+a=\bar{y}-b\bar{x}<br  />
+\]<br  />
+We write the equation of the least-squares line as \( \hat{y}=a+bx\).<br  />
+</p>
+<ul class="org-ul">
+<li>The least-squares line is often called the <i>sample regression line</i>.
+<ul class="org-ul">
+<li>The sample regression line passes through the point of averages \( (\bar{x},\bar{y}) \).
+</li>
+<li>The slope \(b\) of the sample regression line is related to the correlation coefficient:
+\[ b=r\left(\frac{s_y}{s_x}\right) \]
+</li>
+<li>Consequently, the equation of sample regression line can be written as
+\begin{align*} 
+& \hat{y}=\bar{y}+r\left(\frac{s_y}{s_x}\right)(x-\bar{x}) \quad \text{or,}\\
+&\frac{\hat{y}-\bar{y}}{s_y}=r\frac{x-\bar{x}}{s_x}
+\end{align*}
+</li>
+<li>When using regression line with an \(x\) value specified by \(z\) score \(z_x\), the predicted \(y\) would have a \(z\) score \(r\cdot z_x\).
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4">Predicted Value and Residuals</h3>
+<div class="outline-text-3" id="text-3-4">
+<p class="verse">
+The <span class="underline"><i>predicted</i></span> or <span class="underline"><i>fitted values</i></span> of \(y\) result from substituting each sample \(x\) value into the equation for the least-squares line. This gives<br  />
+\[<br  />
+\hat{y}_1=a+bx_1,\quad\hat{y}_2=a+bx_2,\;\dots,\;\hat{y}_n=a+bx_n<br  />
+\]<br  />
+The <span class="underline"><i>residuals</i></span> from the least-squares line are the differences between observed \(y\) value and the corresponding predicted \(y\) vale.<br  />
+\[<br  />
+y_1-\hat{y}_1,\quad y_2-\hat{y}_2,\;\dots,\;y_n-\hat{y}_n<br  />
+\]<br  />
+</p>
+<ul class="org-ul">
+<li>A <span class="underline"><i>residual plot</i></span> is a scatterplot of the \( (x,\text{residual}) \) pairs. It can be used to assess the fit of the regression line.
+<ul class="org-ul">
+<li>Curvature indicates that the relationship is not linear.
+</li>
+<li>Outliers in the \(y\) direction have large residuals.
+</li>
+<li>Outliers in the \(x\) direction are often <i>influential points</i>, meaning that the removal of such points would significantly change the equation of the regression line.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="figure">
+<p><img src="./files/ResidualPlot.png" alt="ResidualPlot.png" />
+</p>
+</div>
+
+<p class="verse">
+The <span class="underline"><i>coefficient of determination</i></span>, denoted by \(r^2\), gives the proportion of variation in \(y\) that can be attributed to the regression linear relationship between \(y\) and \(x\).<br  />
+</p>
+<ul class="org-ul">
+<li>Coefficient of Determination = (Correlation Coefficient)<sup>2</sup>
+<ul class="org-ul">
+<li>Variation in the regression prediction \(\hat{y}=a+bx\) is given by \(b^2\cdot s_x^2\).
+</li>
+<li>Then the percentage of \(y\) variation attributable to the approximate linear relationship between \(y\) and \(x\) is
+\[ \frac{b^2\cdot s_x^2}{s_y^2} = r^2\left(\frac{s_y}{s_x}\right)^2 \frac{s_x^2}{s_y^2} =r^2\]
+</li>
+<li>e.g. when \(r=.8,\;r^2=.64\) regression line explains 64% of the variation in \(y\)
+</li>
+</ul>
+</li>
+</ul>
+
+<p class="verse">
+The <span class="underline"><i>residual sum of squares</i></span> or <span class="underline"><i>error sum of squares</i></span>, denoted by \(\text{SSResid}\), is defined as<br  />
+\[\text{SSResid}=\sum_{i=1}^n(y-\hat{y})^2=(y_1-\hat{y})^2+(y_2-\hat{y})^2+\cdots+(y_n-\hat{y})^2\]<br  />
+The <span class="underline"><i>standard deviation of errors</i></span> is given by<br  />
+\[ s_e=\sqrt{\frac{\text{SSResid}}{n-2}} \]<br  />
+The value \(s_e\) measures the deviations of \(y\) from the regression line.<br  />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Experimental Design</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">Randomization</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Random assignment to ensure that the experiment does not systematically favor one condition over another
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">Types of Bias</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>Selection Bias
+</li>
+<li>Measurement or Response Bias
+</li>
+<li>Nonresponse Bias
+</li>
+
+<li>An <span class="underline"><i>extraneous</i></span> factor is one that is not of interest in the current study but is thought to affect the response variable.
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

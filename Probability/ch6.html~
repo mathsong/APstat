@@ -1,0 +1,465 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Ch.6 Probability</title>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="SONG Qiang" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/lecture.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Ch.6 Probability</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">6.1 Chance Experiments and Events</a>
+<ul>
+<li><a href="#sec-1-1">Chance experiment</a></li>
+<li><a href="#sec-1-2">Sample space</a></li>
+<li><a href="#sec-1-3">Event</a></li>
+<li><a href="#sec-1-4">Operations on events</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">6.2 Definition of Probability</a>
+<ul>
+<li><a href="#sec-2-1">Classical Approach to Probability</a></li>
+<li><a href="#sec-2-2">Probability Line</a></li>
+<li><a href="#sec-2-3">Relative Frequency Approach</a></li>
+<li><a href="#sec-2-4">Probability does not tell us exactly what will happen, it is just a guide.</a></li>
+<li><a href="#sec-2-5">Exercise</a></li>
+<li><a href="#sec-2-6">Basic Properties of Probability (pg. 295)</a></li>
+<li><a href="#sec-2-7">Bean Machine</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">6.4 Conditional Probability</a></li>
+<li><a href="#sec-4">6.5 Independence</a></li>
+<li><a href="#sec-5">6.6 General Probability Rules</a>
+<ul>
+<li><a href="#sec-5-1">Addition Rules</a></li>
+<li><a href="#sec-5-2">Multiplication Rules</a></li>
+<li><a href="#sec-5-3">The Law of Total Probability</a></li>
+<li><a href="#sec-5-4">Bayes' Rule</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">6.1 Chance Experiments and Events</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Many events, if not all,  can't be predicted with total certainty.
+</p>
+<ul class="org-ul">
+<li>tossing a coin 
+</li>
+<li>win/lose e.g. football game, president election
+</li>
+<li>weather forecasting (sunny, rain, haze..)
+</li>
+<li>accident (car, aircraft..)
+</li>
+<li>earthquake..
+</li>
+<li>financial market (Foreign exchange rates, Commodity..)
+</li>
+<li>lottery
+</li>
+<li>throwing dice, <a href="../files/spinner/The Spinner.htm">The Spinner</a>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Chance experiment</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Any activity or situation in which there is uncertainty about which of two or more possible outcomes will result.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Sample space</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The collection of all possible outcomes of a chance experiment is the sample space for the experiment.
+</p>
+<ul class="org-ul">
+<li>{ head, tail }
+</li>
+<li>{ 1, 2, 3, 4, 5, 6 }
+</li>
+<li>Choosing a card from a deck
+</li>
+</ul>
+
+<div class="figure">
+<p><img src="./files/SampleSpaceDeck.PNG" alt="SampleSpaceDeck.PNG" />
+</p>
+</div>
+<ul class="org-ul">
+<li>two dice
+</li>
+</ul>
+
+<div class="figure">
+<p><img src="./files/2dice.PNG" alt="2dice.PNG" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Event</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Any collection of outcomes from the sample space of a chance experiment.
+</li>
+<li>A simple event is an event consisting of exactly one outcome.
+</li>
+</ul>
+
+<div class="figure">
+<p><img src="./files/SampleSpaceEvent.PNG" alt="SampleSpaceEvent.PNG" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Ex. There are 5 marbles in a black box: 3 are blue and 2 are red. A boy picks up one marble in random order, stopping only when a blue marble has been selected.
+<ol class="org-ol">
+<li>Display the possible outcomes of this chance experiment in a tree diagram.
+</li>
+<li>What outcomes are contained in the event A, that the boy picks up exactly one marble.
+</li>
+<li>What outcomes are contained in the event C, that the boy picks up exactly five marbles.
+</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Operations on events</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Let A and B denote two events.
+</p>
+<ul class="org-ul">
+<li>The complement of A (all experimental outcomes that are not in event A)
+</li>
+<li>The union of A and B (all experimental outcomes that are in at least one of the two events A and B)
+</li>
+<li>the intersection of A and B (all experimental outcomes that are in both of the event A dn B)
+</li>
+<li>Two events that have no common outcomes are said to be disjoint or mutually exclusive.
+</li>
+<li>Venn diagram (graph on pg. 285 or refer to <a href="http://en.wikipedia.org/wiki/Venn_diagram">wikipedia</a>)
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">6.2 Definition of Probability</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+First, 100% sure for sth. inevitable. Second, 0 for sth. impossible. For others, it supposed to lie between 0 and 1. E.g. When tossing a coin, it is equally likely to get a head or a tail. so the probability of a head-up is just .5 by intuition.  
+</p>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Classical Approach to Probability</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<div class="figure">
+<p><img src="./files/ClassicalApproachProb.PNG" alt="ClassicalApproachProb.PNG" />
+</p>
+</div>
+<ul class="org-ul">
+<li>e.g. tossing a coin
+</li>
+<li>e.g. the chances of rolling a "4" with a die
+</li>
+<li>e.g. there are 5 marbles in a bag: 4 are blue and 1 is red. What is the probability that a blue marble will be picked?
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">Probability Line</h3>
+<div class="outline-text-3" id="text-2-2">
+
+<div class="figure">
+<p><img src="./files/ProbabilityLine.PNG" alt="ProbabilityLine.PNG" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">Relative Frequency Approach</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>The probability of an event E is defined to be the value approached by the relative frequency of occurrence of E in a very long series of trials of a chance experiment. Thus, if the number of trials is quite large,
+</li>
+</ul>
+
+<div class="figure">
+<p><img src="./files/FrequencyApproachProb.PNG" alt="FrequencyApproachProb.PNG" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">Probability does not tell us exactly what will happen, it is just a guide.</h3>
+</div>
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">Exercise</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>two coins vs. two universities
+</li>
+<li>A basket has 5 apples, 10 organges, and 5 bananas. What is the probability of pulling out an apple?
+</li>
+<li>The first roll of a die is two. What is the probability that the outcome of the second roll will be higher than the first roll?
+</li>
+<li>What is the probability that one of your classmates has the same birthday as yours?
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6">Basic Properties of Probability (pg. 295)</h3>
+</div>
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7">Bean Machine</h3>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">6.4 Conditional Probability</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>good weather and good mood
+</li>
+<li>Let E and F be two events with P(F) &gt; 0. The conditional probability of the event E given that the event F has occurred is denote by P(E|F).
+<img src="./files/ConditionalProb.PNG" alt="ConditionalProb.PNG" />
+</li>
+<li>e.g. 6.15 (pg. 309, Chopin&#x2026;) <br  />
+     <img src="./files/ex/6_15DiagnosingTB.PNG" alt="6_15DiagnosingTB.PNG" />
+</li>
+<li>e.g. 6.12 (pg. 304)
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">6.5 Independence</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>traffic jam &amp; financial market
+</li>
+<li><i>Definition of Independence</i>
+    <img src="./files/Independence.PNG" alt="Independence.PNG" />
+</li>
+<li><i>Example</i>
+</li>
+</ul>
+
+<div class="figure">
+<p><img src="./files/IndependentPizza.PNG" alt="IndependentPizza.PNG" />
+</p>
+</div>
+<ul class="org-ul">
+<li>If P(E|F)=P(E), it is also true that P(F|E)=P(F).
+</li>
+<li><a href="./files/SelectingCards.pdf">Selecting Cards</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">6.6 General Probability Rules</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">Addition Rules</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>Inclusion-exclusion principle
+</li>
+</ul>
+
+<div class="figure">
+<p><img src="./files/InclusionExclusion3.PNG" alt="InclusionExclusion3.PNG" width="80%" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2">Multiplication Rules</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>Monty Hall Problem
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3">The Law of Total Probability</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+<div style="float:;border:1px solid #aaaaaa;padding:8px;width:;margin-top:;margin-left:auto;margin-right:auto;">
+Consider a well shuffled card deck. What is the probability the second card in the deck is an ace?
+</div>
+</p>
+
+<p>
+<div style="float:;border:1px solid #aaaaaa;padding:8px;width:;margin-top:;margin-left:auto;margin-right:auto;"> 
+Suppose we have two black boxes: one has 4 red balls and 6 blue balls, the other has 6 red and 4 blue. We toss a fair coin, if heads, pick a random ball from the first box, if tails from the second. What is the probability of getting a red ball?
+</div>
+</p>
+
+<p>
+<div style="float:;border:1px solid #aaaaaa;padding:8px;width:;margin-top:;margin-left:auto;margin-right:auto;">
+A soccer team wins 60% of its games when it scores the first goal, and 10% of its games when the opposing team scores first. If the team scores the first goal about 30% of the time, what fraction of the games does it win? 
+</div>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4">Bayes' Rule</h3>
+</div>
+</div>
+</div>
+</body>
+</html>

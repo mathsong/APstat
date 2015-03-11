@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Ch.7 Random Variables and Probability Distributions</title>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="SONG Qiang" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/lecture.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "left",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Ch.7 Random Variables and Probability Distributions</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">7.1 Random Variables</a></li>
+<li><a href="#sec-2">Mean of a Random Variable</a></li>
+<li><a href="#sec-3">Standard Deviation</a></li>
+<li><a href="#sec-4">Chebyshev's Inequality</a>
+<ul>
+<li><a href="#sec-4-1">The Empirical Rule</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">Binomial Distribution</a>
+<ul>
+<li><a href="#sec-5-1">Yang Hui (Pascal's) Triangle</a></li>
+<li><a href="#sec-5-2">Two Distributions</a></li>
+<li><a href="#sec-5-3">Mean and Standard Deviation</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">7.3 Continuous Random Variable</a>
+<ul>
+<li><a href="#sec-6-1">Density Function</a></li>
+<li><a href="#sec-6-2">Uniform Distributions</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">Normal Distributions</a>
+<ul>
+<li><a href="#sec-7-1">Standard Normal Distribution</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">7.1 Random Variables</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>A numerical variable whose value depends on the outcome of a chance experiment is called a <span class="underline"><i>random variable</i></span>. A random variable is <span class="underline"><i>discrete</i></span> if its set of possible values is a collection of isolated points on the number line.
+</li>
+<li>The <span class="underline"><i>probability distribution of a discrete random variable x</i></span> gives the probability associated with each possible value.
+
+<div class="figure">
+<p><img src="./files/2dicedistribution.png" alt="2dicedistribution.png" height="400px" />
+</p>
+<p><span class="figure-number">Figure 1:</span> Probability Distribution of the Sum on Two Dice</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Mean of a Random Variable</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>The <span class="underline"><i>mean value (or expected value) of a discrete random variable x</i></span>, denoted by \(\mu_x\), is defined to be 
+\[
+      \mu_x = \sum_i x_i \cdot p(x_i)
+    \]
+Thus, one may calculate the mean value via two steps:
+<ol class="org-ol">
+<li>multiply each value \(x_i\) by its probability
+</li>
+<li>sum them up
+</li>
+</ol>
+</li>
+<li>Roulette
+</li>
+<li>pg. 384 7.35
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Standard Deviation</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>The <span class="underline"><i>variance of a discrete random variable x</i></span>, denoted by \(\operatorname{Var}(x)\), is defined to be
+\[
+     \operatorname{Var}(x) = \sum_i (x_i - \mu_x)^2 \cdot p(x_i)
+     \]
+</li>
+<li>The <span class="underline"><i>standard deviation of x</i></span>, denoted by <i>&sigma;<sub>x</sub></i>, is the square root of the variance \(\operatorname{Var}(x)\).
+\[
+     \sigma_x=\sqrt{\operatorname{Var}(x)}
+     \]
+Thus, \(\sigma_x^2\) is often used to denote the variance.
+</li>
+</ul>
+<p>
+<div class="org-info-box"><img src="../css/icons/info.png" alt="NOTE" /><p>
+It follows that  \( \sigma_x^2=\operatorname{Var}(x) = \sum_i x_i^2 \cdot p(x_i) - \mu_x^2. \) (Hint: first multiply out the brackets \( (x_i - \mu_x)^2\), then regroup and combine the summands.)
+</p><br style="clear:left;height:1px;" /></div><br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Chebyshev's Inequality</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Let \(X\) (integrable) be a random variable with finite expected value \(\mu\) and finite non-zero variance \(\sigma^2\). Then for any real number \(k>0\)
+</p>
+\begin{equation*}
+\operatorname{P}\left(|X-\mu|\geq k\sigma\right)\leq \frac{1}{k^2}
+\end{equation*}
+<p>
+The Chebyshev's inequality can be depicted in the following graph.
+</p>
+
+<div class="figure">
+<p><img src="./files/chebyshev.png" alt="chebyshev.png" width="50%" />
+</p>
+<p><span class="figure-number">Figure 2:</span> Chebyshev's Inequality</p>
+</div>
+
+<p>
+Regardless of the shape of the distribution we always have
+</p>
+
+<div class="figure">
+<p><img src="./files/chebyshev23.png" alt="chebyshev23.png" width="50%" />
+</p>
+</div>
+
+<p>
+<div style="float:none;border:1px solid #aaaaaa;padding:8px;width:80%;margin-top:auto;margin-left:auto;margin-right:auto;">
+&bull; At least <b>75%</b> of the item in any data set must be within <b>2</b> standard deviations of the mean.<br  />
+&bull; At least <b>89%</b> of the item in any data set must be within <b>3</b> standard deviations of the mean.<br  />
+&bull; At least <b>94%</b> of the item in any data set must be within <b>4</b> standard deviations of the mean. 
+</div>
+</p>
+</div>
+
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">The Empirical Rule</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+If the histogram of values in a data set can be reasonably well approximated by a normal curve. Then
+<div style="float:none;border:1px solid #aaaaaa;padding:8px;width:80%;margin-top:auto;margin-left:auto;margin-right:auto;">
+&bull; At least <b>68%</b> of the item in any data set must be within <b>1</b> standard deviations of the mean.<br  />
+&bull; At least <b>95%</b> of the item in any data set must be within <b>2</b> standard deviations of the mean.<br  />
+&bull; At least <b>99.7%</b> of the item in any data set must be within <b>3</b> standard deviations of the mean. 
+</div>
+</p>
+
+<div class="figure">
+<p><img src="./files/EmpiricalRule.png" alt="EmpiricalRule.png" />
+</p>
+<p><span class="figure-number">Figure 4:</span> The Empirical Rule</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Binomial Distribution</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">Yang Hui (Pascal's) Triangle</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>About 800 years ago&#x2026;<br  />
+     <img src="./files/YangHui.jpg" alt="YangHui.jpg" />
+</li>
+<li>Each number is the two numbers above it added together (except for the edges, which are all "1").
+</li>
+</ul>
+<p>
+<div style="float:left;padding:1px;width:40%;margin-top:auto;margin-left:auto;margin-right:auto;">
+<img src="./files/PascalTriangleAnimated.gif" alt="PascalTriangleAnimated.gif" />
+</div>
+<div style="float:left;padding:1px;width:40%;margin-top:25px;margin-left:auto;margin-right:auto;">
+<img src="./files/TriangleC.png" alt="TriangleC.png" />
+</div><br style="clear:both;" />
+</p>
+
+<div class="figure">
+<p><img src="./files/PascalTriangle30.png" alt="PascalTriangle30.png" width="90%" />
+</p>
+<p><span class="figure-number">Figure 5:</span> Yang Hui (Pascal's) Triangle</p>
+</div>
+
+<ul class="org-ul">
+<li>Pascal's triangle has many properties and contains many patterns of numbers.
+</li>
+</ul>
+
+<div class="figure">
+<p><img src="./files/PatternPT.png" alt="PatternPT.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2">Two Distributions</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li><span class="underline">Example</span>&nbsp; Suppose O'Neal is a 65% free throw shooter. If we assume that repeated shots are independent, what is the probability that Shaq makes exactly 5 of his next 10 free throws?
+</li>
+</ul>
+<p class="verse">
+Consider a sequence of independent yes/no experiments, each of which yields success with probability \(\pi\).<br  />
+(i) Let \(x\) denote the number of successes in \(n\) trials. Then \(x\) ranges from \(0\) to \(n\) and the probability is<br  />
+\[<br  />
+\operatorname{P}(x=k)={n\choose k}\pi^k(1-\pi)^{n-k}<br  />
+\]<br  />
+We call such \(x\) as <span class="underline"><i>binomial random variable</i></span> and the distribution of \( x \) as <span class="underline"><i>binomial distribution</i></span>.<br  />
+(ii) Let \(y\) denote the number of trials until the first success is observed (including the success trial). Then the probability is<br  />
+\[<br  />
+\operatorname{P}(y=k)=(1-\pi)^{k-1}\pi, \quad k=1,2,3,\dots<br  />
+\]<br  />
+We call such \(y\) as <span class="underline"><i>geometric random variable</i></span> and the distribution of \( y \) as <span class="underline"><i>geometric distribution</i></span>.<br  />
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3">Mean and Standard Deviation</h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>The mean value and the standard deviation of a binomial random variable \(x\) are, respectively,
+\[
+     \mu_x=n\pi, \quad \text{and} \quad\sigma_x=\sqrt{n\pi(1-\pi)}
+     \]
+</li>
+<li>The mean value and the standard deviation of a geometric random variable \(y\) are, respectively,
+\[
+     \mu_y=\frac{1}{p}, \quad \text{and} \quad\sigma_y=\frac{1}{p}\sqrt{(1-p)}
+     \]
+</li>
+</ul>
+
+<p>
+<div style="float:left;padding:1px;width:30%;margin-top:50px;margin-left:auto;margin-right:auto;">
+<span class="underline">Example</span>&nbsp; 30.4% of US households own cats. How many households do you expect you'll need to visit to find a cat-owning household?
+</div>
+<div style="float:right;padding:1px;width:60%;margin-top:auto;margin-left:auto;margin-right:auto;">
+<img src="./files/geometricdist.png" alt="geometricdist.png" />
+</div><br style="clear:both;" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">7.3 Continuous Random Variable</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Let \(x\) be a continuous random variable. Then for any two numbers \(a\) and \(b\) with \(a\lt b\),
+</p>
+<ul class="org-ul">
+<li>\(P(x=a)=0\)
+</li>
+<li>\(P(a\lt x \lt b)=P(a\le x \lt b)=P(a\lt x\le b)=P(a\le x\le b) \)
+</li>
+</ul>
+</div>
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1">Density Function</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+The probability density function is nonnegative everywhere, and its integral over the entire space is equal to one.
+</p>
+<ul class="org-ul">
+<li>Probabilities is calculated as the integral of density function \(f(x)\) over the range
+\[P(a\lt x \lt b)=\int_a^b f(x)dx \]
+</li>
+<li>Probabilities as areas under probability density curve
+
+<div class="figure">
+<p><img src="./files/density.png" alt="density.png" width="90%" />
+</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2">Uniform Distributions</h3>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Normal Distributions</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">Standard Normal Distribution</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li>\(f(x)=\frac{1}{\sqrt(2\pi)}e^{-\frac{x^2}{2}} \)
+</li>
+<li>\(\mu_x=0, \sigma_x=1\)
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
