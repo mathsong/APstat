@@ -289,22 +289,21 @@ Urban Studies.
 
 <p>
 </div>
-<div style="float:left;padding:1px;width:33%;margin-top:80px;margin-left:auto;margin-right:auto;">
+<div style="float:left;padding:1px;width:33%;margin-top:70px;margin-left:auto;margin-right:auto;">
 </p>
-\begin{equation*}
-\begin{split}
-\mu_x & = \sum_i x_i \cdot p(x_i)\\
-& \\
-\sigma_x^2 &= \sum_i (x_i - \mu_x)^2 \cdot p(x_i)
-\end{split}
-\end{equation*}
+\[
+\mu_x  = \sum_i x_i \cdot p(x_i)
+\]
+\[
+\sigma_x^2 = \sum_i (x_i - \mu_x)^2 \cdot p(x_i)
+\]
 <p>
 </div><br style="clear:both;" />
 </p>
 
 
 <div class="figure">
-<p><img src="./files/BinDist201000.PNG" alt="BinDist201000.PNG" width="90%" />
+<p><img src="./files/BinDist201000.png" alt="BinDist201000.PNG" width="90%" />
 </p>
 <p><span class="figure-number">Figure 3:</span> Two Binomial Distributions (with same mean but different variance)</p>
 </div>
