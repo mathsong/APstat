@@ -204,6 +204,15 @@ for the JavaScript code in this tag.
   H_a:\quad&\text{population characteristic}\neq\text{hypothesized value}
   \end{split}\]
 </li>
+</ul>
+
+
+<div class="figure">
+<p><img src="./files/Htest95.PNG" alt="Htest95.PNG" />
+</p>
+</div>
+
+<ul class="org-ul">
 <li><span class="underline"><i>Type I error:</i></span> the error of rejecting H<sub>0</sub> when H<sub>0</sub> is true
 </li>
 <li><span class="underline"><i>Type II error:</i></span> the error of failing to reject H<sub>0</sub> when H<sub>0</sub> is false
@@ -227,6 +236,11 @@ If the random samples are selected independently of one another, then<br  />
 2. \(\sigma_{\bar{x_1}-\bar{x_2}}^2\), the variance of \(\bar{x_1}-\bar{x_2}\), is equal to \(\sigma_{\bar{x_1}}^2+\sigma_{\bar{x_2}}^2\) (i.e., \(\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}\)).<br  />
 3. If \(n_1\) and \(n_2\) are both large or the population distributions are (at least approximately) normal, \(\bar{x_1}\) and \(\bar{x_2}\) each have (at least approximately) a normal distribution.<br  />
 </p>
+
+<div id="postamble" class="status">
+<p class="author">Author: SONG Qiang</p>
+<p class="email">Email: <a href="mailto:ian.qsong@hotmail.com">ian.qsong@hotmail.com</a></p>
+</div>
 </div>
 </div>
 </div>
